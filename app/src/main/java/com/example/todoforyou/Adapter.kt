@@ -5,24 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoforyou.databinding.ActivityMainBinding
+import com.example.todoforyou.databinding.ViewBinding
 
-class Adapter : RecyclerView.Adapter<Adapter.viewHolder>() {
+class Adapter : RecyclerView.Adapter<Adapter.MyViewHolder>() {
     lateinit var binding: Adapter
-    class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //var title=itemView.title.
+
+
+    class MyViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return MyViewHolder(ViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
-        var itemView=LayoutInflater.from(parent.context).
-        inflate(R.layout.view,parent,false)
-        return viewHolder(itemView)
-    }
-
-    override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val text = holder.binding.nomi.text.toString()
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return 1000
     }
 }
